@@ -10,56 +10,71 @@ package BatallaporTurnos;
  * @author user
  */
 public class Estadistica {
-    int pts;
-    int ptsm;
-    int ulti;
+    //Atributos de los Personajes
+    int puntosDeVida;
+    int puntosDeMagia;
+    int medidorHabilidadDefinitiva;
+    //Constantes de Daño General
+    final static int DANOFISICO = 100;
+    final static int DANOMAGICO = 400;
+    //Constante de Desgaste
+    final static int DESGASTEMAGICO = 40;
+    //Constantes de la Habilidad Definitiva
+    final static int INCREMENTOMEDIDORHABILIDAD_DEFINITIVA = 10;
+    final static int DANOHABILIDAD_DEFINITIVA = 1000;
+    final static int CAPACIDADSUFICIENTE_MEDIDORHABILIDAD_DEFINITIVA = 100;
+    //Constante para estadisticas Vacias
+    final static int VACIO = 0;
     
+    //Constructor Completo
     Estadistica(int Vida,int Magia,int Definitiva){
-        pts = Vida;
-        ptsm = Magia;
-        ulti = Definitiva;
+        puntosDeVida = Vida;
+        puntosDeMagia = Magia;
+        medidorHabilidadDefinitiva = Definitiva;
     }    
+    
+    //Constructor Vacio
     Estadistica(){
-        pts = 0;
-        ptsm = 0;
-        ulti = 0;
+        puntosDeVida = 0;
+        puntosDeMagia = 0;
+        medidorHabilidadDefinitiva = 0;
     }    
+    
+    //toString de los atributos de los Personajes
     public String toString(){
-        String estadisticas = "PS: " + pts + " PM: " + ptsm + ",Medidor Habilidad Definitiva: " + ulti;    
+        String estadisticas = "PS: " + puntosDeVida + " PM: " + puntosDeMagia + ",Medidor Habilidad Definitiva: " + medidorHabilidadDefinitiva;    
         return estadisticas;
     }    
-    int punosNormales(Estadistica Herida){
-        int daño = 100;
-        int ataque = (Herida.pts - daño);
+    
+    //Funciones
+    int usaGolpesNormales(Estadistica Herida){
+        int ataque = (Herida.puntosDeVida - DANOFISICO);
         return ataque;
     }    
     
-    int vacioPurpura(Estadistica HeridaM){
-        int dañoM = 400;
-        int ataqueM = (HeridaM.pts - dañoM);
+    int usaVacioPurpura(Estadistica HeridaM){
+        int ataqueM = (HeridaM.puntosDeVida - DANOMAGICO);
         return ataqueM;
     }    
     
     int desgastePM(Estadistica Potencia){
-        int agota = 40;
-        int desgaste = (Potencia.ptsm - agota);
+        int desgaste = (Potencia.puntosDeMagia - DESGASTEMAGICO);
         return desgaste;
     }    
     
-    int aumentaUlti(Estadistica Aumento){
-        int sube = 10;
-        int incremento = (Aumento.ulti + sube);
+    int aumentaMedidorHabilidadDefinitiva(Estadistica Aumento){
+        int incremento = (Aumento.medidorHabilidadDefinitiva + 
+        INCREMENTOMEDIDORHABILIDAD_DEFINITIVA);
         return incremento;
     }    
     
-    int habilidadDefinitiva(Estadistica Ultima){    
-        int dañoUlti = 1000;
-        int ataqueUlti = (Ultima.pts - dañoUlti);
+    int usaHabilidadDefinitiva(Estadistica Ultima){    
+        int ataqueUlti = (Ultima.puntosDeVida - DANOHABILIDAD_DEFINITIVA);
         return ataqueUlti;
     }    
     
     int desgasteUlti(Estadistica Reinicio){
-        int desgasteSupremo = Reinicio.ulti = 0; 
+        int desgasteSupremo = Reinicio.medidorHabilidadDefinitiva = VACIO; 
         return desgasteSupremo;
-    }
+    }          
 }
